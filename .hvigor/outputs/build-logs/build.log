@@ -1,0 +1,178 @@
+[2026-05-13T22:36:59.920] [DEBUG] debug-file - env: nodejsVersion=v18.20.1
+[2026-05-13T22:36:59.974] [DEBUG] debug-file - env: daemon=true
+[2026-05-13T22:36:59.921] [DEBUG] debug-file - env: hvigor-config.json5 content = {
+  modelVersion: '5.0.0',
+  dependencies: {},
+  execution: {},
+  logging: {},
+  debugging: {}
+}
+[2026-05-13T22:37:00.728] [DEBUG] debug-file - java daemon tryConnect failed Error: connect ECONNREFUSED 127.0.0.1:45050
+[2026-05-13T22:37:00.734] [DEBUG] debug-file - java daemon started at port 45050 pid 2476
+[2026-05-13T22:37:00.774] [DEBUG] debug-file - session manager: set active socket. socketId=LK34cv8Um-ov42cFAAAB
+[2026-05-13T22:37:01.500] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2026-05-13T22:37:01.505] [DEBUG] debug-file - Since there is no instance or instance is terminated, create a new worker pool.
+[2026-05-13T22:37:01.506] [DEBUG] debug-file - Worker pool is initialized with config:  {
+  minPoolNum: 2,
+  maxPoolNum: undefined,
+  maxCoreSize: undefined,
+  cacheCapacity: undefined,
+  cacheTtl: undefined
+}
+[2026-05-13T22:37:01.507] [DEBUG] debug-file - Create  resident worker with id: 0.
+[2026-05-13T22:37:01.509] [DEBUG] debug-file - Create  resident worker with id: 1.
+[2026-05-13T22:37:01.511] [DEBUG] debug-file - Workers' log level updated to INFO
+[2026-05-13T22:37:01.520] [DEBUG] debug-file - Hvigor init with startParameters:{
+  hvigorfileTypeCheck: false,
+  parallelExecution: true,
+  incrementalExecution: true,
+  printStackTrace: false,
+  daemon: true,
+  analyze: 0,
+  logLevel: Level { level: 20000, levelStr: 'INFO', colour: 'green' },
+  optimizationStrategy: 'memory',
+  hotCompile: undefined,
+  hotReloadBuild: undefined,
+  customizedParam: undefined
+}
+[2026-05-13T22:37:01.520] [DEBUG] debug-file - Since current hvigor version 6.22.4 differs from last hvigor version 
+      undefined, delete file-cache.json and task-cache.json.
+[2026-05-13T22:37:01.521] [DEBUG] debug-file - Cache service initialization finished in 1 ms 
+[2026-05-13T22:37:01.523] [DEBUG] debug-file - hvigorfile, resolving C:\clone\2026Spring-24312024-Lab2\hvigorfile.ts
+[2026-05-13T22:37:03.599] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2026-05-13T22:37:03.599] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2026-05-13T22:37:03.600] [DEBUG] debug-file - Starting plugin build process
+[2026-05-13T22:37:03.600] [DEBUG] debug-file - App plugin prepare start...
+[2026-05-13T22:37:03.600] [DEBUG] debug-file - App plugin prepare end...
+[2026-05-13T22:37:03.600] [DEBUG] debug-file - App plugin creating...
+[2026-05-13T22:37:03.717] [DEBUG] debug-file - App plugin register hook start...
+[2026-05-13T22:37:03.717] [DEBUG] debug-file - App plugin register hook end...
+[2026-05-13T22:37:03.717] [DEBUG] debug-file - Plugin build process completed
+[2026-05-13T22:37:03.718] [DEBUG] debug-file - Start initialize project's product build option map with build mode debug.
+[2026-05-13T22:37:03.718] [DEBUG] debug-file - Picking option from product 'default' with build mode 'debug'.
+[2026-05-13T22:37:03.718] [DEBUG] debug-file - Product 'default' build option initialized
+[2026-05-13T22:37:03.718] [DEBUG] debug-file - End initialize project's product build option map with build mode 'debug'.
+[2026-05-13T22:37:03.720] [DEBUG] debug-file - Obtain build option for product 'default'in this build.
+[2026-05-13T22:37:03.721] [DEBUG] debug-file - not found resModel json file in : C:\clone\2026Spring-24312024-Lab2\entry\src\ohosTest\module.json5
+[2026-05-13T22:37:03.725] [DEBUG] debug-file - No signingConfig found, initRemoteHspCache failed.
+[2026-05-13T22:37:03.727] [DEBUG] debug-file - Local scan or download HarmonyOS sdk components toolchains,ets,js,native,previewer
+[2026-05-13T22:37:03.729] [DEBUG] debug-file - Local scan or download hmscore sdk components toolchains,ets,native
+[2026-05-13T22:37:03.731] [DEBUG] debug-file - Start recording SDK configuration permission data.
+[2026-05-13T22:37:03.754] [DEBUG] debug-file - Sdk init in 29 ms 
+[2026-05-13T22:37:03.758] [DEBUG] debug-file - Project task initialization takes 3 ms 
+[2026-05-13T22:37:03.758] [DEBUG] debug-file - hvigorfile, resolve finished C:\clone\2026Spring-24312024-Lab2\hvigorfile.ts
+[2026-05-13T22:37:03.759] [DEBUG] debug-file - hvigorfile, resolving C:\clone\2026Spring-24312024-Lab2\entry\hvigorfile.ts
+[2026-05-13T22:37:03.763] [DEBUG] debug-file - hvigorfile, require result:  {}
+[2026-05-13T22:37:03.763] [DEBUG] debug-file - hvigorfile, binding system plugins {}
+[2026-05-13T22:37:03.764] [DEBUG] debug-file - Starting plugin build process
+[2026-05-13T22:37:03.764] [DEBUG] debug-file - Hap plugin creating...
+[2026-05-13T22:37:03.765] [DEBUG] debug-file - failed to load cangjie to dynamically generate schemas: Error: Cannot find module '@ohos/cangjie-build-support/index'
+Require stack:
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\hooks\cangjie-register.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\strategy\stage-init-strategy.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\builder\abstract-plugin-builder.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\builder\app-plugin-builder.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\factory\plugin-factory.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\index.js
+- C:\clone\2026Spring-24312024-Lab2\hvigorfile.ts
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js
+- D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\process\daemon-process-boot-script.js
+[2026-05-13T22:37:03.773] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2026-05-13T22:37:03.773] [DEBUG] debug-file - Target 'default' config initialized
+[2026-05-13T22:37:03.773] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=release
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Target 'default' config initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Start initialize module-target build option map, moduleName=entry, buildMode=debug
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Target 'default' config initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Target 'ohosTest' config initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'default' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Module 'entry' target 'ohosTest' build option initialized
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - End initialize module-target build option map, moduleName=entry
+[2026-05-13T22:37:03.774] [DEBUG] debug-file - Obtain build option for module 'entry' target 'default'in this build.
+[2026-05-13T22:37:03.779] [DEBUG] debug-file - Module entry task initialization takes 4 ms 
+[2026-05-13T22:37:03.779] [DEBUG] debug-file - Hap plugin register hook start...
+[2026-05-13T22:37:03.779] [DEBUG] debug-file - Hap plugin register hook end...
+[2026-05-13T22:37:03.779] [DEBUG] debug-file - Plugin build process completed
+[2026-05-13T22:37:03.779] [DEBUG] debug-file - hvigorfile, resolve finished C:\clone\2026Spring-24312024-Lab2\entry\hvigorfile.ts
+[2026-05-13T22:37:03.796] [DEBUG] debug-file - hvigorfile, resolve hvigorfile dependencies in 17 ms 
+[2026-05-13T22:37:03.796] [DEBUG] debug-file - project has submodules:entry
+[2026-05-13T22:37:03.797] [DEBUG] debug-file - start to load updatedOhPackageInfo to the disk
+[2026-05-13T22:37:03.801] [DEBUG] debug-file - load to the disk finished
+[2026-05-13T22:37:03.802] [DEBUG] debug-file - Start to initialize dependency information.
+[2026-05-13T22:37:03.808] [DEBUG] debug-file - Module 2026Spring-24312024-Lab2 Collected Dependency: 
+[2026-05-13T22:37:03.808] [DEBUG] debug-file - Module 2026Spring-24312024-Lab2's total dependency: 0
+[2026-05-13T22:37:03.878] [DEBUG] debug-file - hvigor build process will be closed with an error.
+[2026-05-13T22:37:03.878] [ERROR] debug-file - [31m00303082 Configuration Error
+Error Message: Unable to find the targetSdkVersion 6.1.0(23) in SDK Manager. At file: C:\clone\2026Spring-24312024-Lab2\build-profile.json5
+
+* Try the following:
+  > Since NEXT Developer Beta1, DevEco Studio offers an out-of-the-box development experience by packaging the SDK, Node.js, Hvigor, ohpm, and other toolchains together, simplifying the installation and configuration process of DevEco Studio. It also provides integrated capabilities for migrating historical projects, helping you quickly complete project conversion.
+  > To download the integrated IDE, visit https://developer.huawei.com/consumer/cn/download/
+  > More info: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-integrated-project-migration
+[39m
+
+[31m* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+
+[2026-05-13T22:37:03.879] [DEBUG] debug-file - ERROR: stacktrace = AdaptorError: [31m00303082 Configuration Error
+Error Message: Unable to find the targetSdkVersion 6.1.0(23) in SDK Manager. At file: C:\clone\2026Spring-24312024-Lab2\build-profile.json5
+
+* Try the following:
+  > Since NEXT Developer Beta1, DevEco Studio offers an out-of-the-box development experience by packaging the SDK, Node.js, Hvigor, ohpm, and other toolchains together, simplifying the installation and configuration process of DevEco Studio. It also provides integrated capabilities for migrating historical projects, helping you quickly complete project conversion.
+  > To download the integrated IDE, visit https://developer.huawei.com/consumer/cn/download/
+  > More info: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-integrated-project-migration
+[39m
+    at OhosLogger.printErrorExit (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\log\hvigor-log.js:1:5087)
+    at OneSdkValidator.versionCompatibilityCheck (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\utils\one-sdk-validator.js:1:4479)
+    at OneSdkValidator.apiInspection (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\utils\one-sdk-validator.js:1:1889)
+    at HvigorLifecycleHook.<anonymous> (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\builder\app-plugin-builder.js:1:2659)
+    at HvigorLifecycleHook.runFn (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\hook\hvigor-lifecycle-hook.js:1:1743)
+    at configuration (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js:1:2806)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async start (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js:1:2570)
+    at async boot (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js:1:1789)
+    at async Worker.<anonymous> (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js:1:3723)
+[2026-05-13T22:37:03.879] [ERROR] debug-file - AdaptorError: [31m00303082 Configuration Error
+Error Message: Unable to find the targetSdkVersion 6.1.0(23) in SDK Manager. At file: C:\clone\2026Spring-24312024-Lab2\build-profile.json5
+
+* Try the following:
+  > Since NEXT Developer Beta1, DevEco Studio offers an out-of-the-box development experience by packaging the SDK, Node.js, Hvigor, ohpm, and other toolchains together, simplifying the installation and configuration process of DevEco Studio. It also provides integrated capabilities for migrating historical projects, helping you quickly complete project conversion.
+  > To download the integrated IDE, visit https://developer.huawei.com/consumer/cn/download/
+  > More info: https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-integrated-project-migration
+[39m
+    at OhosLogger.printErrorExit (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\log\hvigor-log.js:1:5087)
+    at OneSdkValidator.versionCompatibilityCheck (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\utils\one-sdk-validator.js:1:4479)
+    at OneSdkValidator.apiInspection (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\utils\one-sdk-validator.js:1:1889)
+    at HvigorLifecycleHook.<anonymous> (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor-ohos-plugin\src\plugin\builder\app-plugin-builder.js:1:2659)
+    at HvigorLifecycleHook.runFn (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\hook\hvigor-lifecycle-hook.js:1:1743)
+    at configuration (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\internal\lifecycle\configuration.js:1:2806)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async start (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js:1:2570)
+    at async boot (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\boot\index.js:1:1789)
+    at async Worker.<anonymous> (D:\devecostudio-windows-6.0.2.650\DevEco Studio\tools\hvigor\hvigor\src\base\daemon\cluster\worker-process-lifecycle.js:1:3723)
+[2026-05-13T22:37:03.886] [ERROR] debug-file - BUILD FAILED in 2 s 374 ms 
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Cleanup worker 0.
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Worker 0 has been cleaned up.
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Current idle worker size: 1.
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Current resident worker size: 2.
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Cleanup worker 1.
+[2026-05-13T22:37:03.900] [DEBUG] debug-file - Worker 1 has been cleaned up.
+[2026-05-13T22:37:03.901] [DEBUG] debug-file - Current idle worker size: 0.
+[2026-05-13T22:37:03.901] [DEBUG] debug-file - Current resident worker size: 2.
+[2026-05-13T22:37:03.902] [DEBUG] debug-file - hvigor build process will be closed.
+[2026-05-13T22:37:03.903] [DEBUG] debug-file - session manager: send message to worker process.
+[2026-05-13T22:37:03.903] [DEBUG] debug-file - session manager: send message to worker process.
+[2026-05-13T22:37:03.903] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2026-05-13T22:37:03.904] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2026-05-13T22:37:03.905] [DEBUG] debug-file - worker[0] exits with exit code 1.
+[2026-05-13T22:37:03.905] [DEBUG] debug-file - worker[1] exits with exit code 1.

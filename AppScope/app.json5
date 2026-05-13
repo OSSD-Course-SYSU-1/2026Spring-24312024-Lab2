@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.aicharacterrecognition",
+    "bundleName": "com.huawei.hms.ocrdemo",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

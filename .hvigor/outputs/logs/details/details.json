@@ -1,0 +1,32 @@
+{
+  "HVIGOR": {
+    "IS_INCREMENTAL": true,
+    "IS_DAEMON": true,
+    "IS_PARALLEL": true,
+    "IS_HVIGORFILE_TYPE_CHECK": false,
+    "TASK_TIME": {},
+    "APIS": [],
+    "CONFIG_EXPERIMENT": {
+      "ENABLE_MODULE_SKIP": false,
+      "ENABLE_CPP_FUNCTION_LEVEL_INCREMENTAL": false
+    },
+    "CONFIG_PROPERTIES": {},
+    "BUILD_ID": "202605132237015110",
+    "ERROR_MESSAGE": [
+      {
+        "CODE": "00303082",
+        "MESSAGE": "Unable to find the %s %s(%s) in SDK Manager. At file: %s",
+        "SOLUTIONS": [
+          "Since NEXT Developer Beta1, DevEco Studio offers an out-of-the-box development experience by packaging the SDK, Node.js, Hvigor, ohpm, and other toolchains together, simplifying the installation and configuration process of DevEco Studio. It also provides integrated capabilities for migrating historical projects, helping you quickly complete project conversion.",
+          "To download the integrated IDE, visit https://developer.huawei.com/consumer/cn/download/"
+        ],
+        "MORE_INFO": {
+          "cn": "https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-integrated-project-migration",
+          "en": "https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-integrated-project-migration"
+        },
+        "TIMESTAMP": "1778683023808"
+      }
+    ],
+    "TOTAL_TIME": 2373783100
+  }
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { UIAbility,AbilityConstant,Want } from '@kit.AbilityKit';
-import { window } from '@kit.ArkUI';
+import {AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import { window } from '@kit.ArkUI';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    AppStorage.setOrCreate('context', this.context);
   }
 
   onDestroy(): void {

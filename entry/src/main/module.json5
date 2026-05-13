@@ -5,7 +5,9 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone"
+      "phone",
+      "tablet",
+      "2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -17,7 +19,7 @@
         "description": "$string:EntryAbility_desc",
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
         "skills": [
@@ -31,18 +33,6 @@
           }
         ]
       }
-    ],
-    "requestPermissions": [
-      {
-        "name": "ohos.permission.CAMERA",
-        "usedScene": {
-          "abilities": [
-            "EntryAbility"
-          ],
-          "when": "inuse"
-        },
-        "reason": "$string:CAMERA"
-      },
     ]
   }
 }

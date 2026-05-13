@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2026 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,153 +12,145 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { BusinessError } from '@kit.BasicServicesKit';
-import Logger from '../common/utils/Logger'
-import grantPermission from '../common/utils/PermissionUtils'
-import { DeviceScreen } from '../common/utils/DeviceScreen'
-import Camera from '../common/utils/Camera'
-import { CustomDialogExample } from '../view/CustomDialogView'
-import CommonConstants from '../common/constants/CommonConstants';
+import { textRecognition } from '@kit.CoreVisionKit'
+import { image } from '@kit.ImageKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-
-const TAG: string = '[IndexPage]';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { fileIo } from '@kit.CoreFileKit';
+import { photoAccessHelper } from '@kit.MediaLibraryKit';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Index {
-  @State private recognitionResult: string = '';
-  @Watch('watchedCamera') @State private camera: Camera = new Camera();
-  private surfaceId: string = '';
-  private xcomponentController: XComponentController = new XComponentController();
-  private screenHeight: number = DeviceScreen.getDeviceHeight();
-  private xcomponentHeight: number = this.screenHeight - CommonConstants.OTHER_HEIGHT;
+  private imageSource: image.ImageSource | undefined = undefined;
+  @State chooseImage: PixelMap | undefined = undefined;
+  @State dataValues: string = '';
 
-  watchedCamera() {
-    if (this.camera.result !== this.recognitionResult) {
-      this.recognitionResult = this.camera.result;
-      if (this.recognitionResult) {
-        this.dialogController.open();
+  build() {
+    Column() {
+      Row() {
+        Image(this.chooseImage)
+          .objectFit(ImageFit.Contain)
       }
+      .height('50%')
+      .margin({
+        bottom: LengthMetrics.vp(24)
+      })
+
+      Row() {
+        Scroll() {
+          Text(this.dataValues)
+            .copyOption(CopyOptions.LocalDevice)
+            .margin(10)
+            .width('90%')
+        }
+        .margin(10)
+        .width('90%')
+        .backgroundColor('rgba(0, 0, 0, 0.05)')
+        .borderRadius(16)
+        .height('100%') // Sets the height of the Scroll component.
+      }
+      .height('30%')
+      .margin({
+        bottom: LengthMetrics.vp(12)
+      })
+
+      Button('Select image')
+        .onClick(() => {
+          // Pull up the gallery.
+          this.selectImage()
+        })
+        .width('80%')
+        .margin({
+          bottom: LengthMetrics.vp(12)
+        })
+
+      Button('Start recognition')
+        .fontColor(Color.White)
+        .alignSelf(ItemAlign.Center)
+        .width('80%')
+        .margin({
+          bottom: LengthMetrics.vp(16)
+        })
+        .onClick(async () => {
+          this.textRecognitionTest();
+        })
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.End)
+  }
+
+  private async textRecognitionTest() {
+    if (!this.chooseImage) {
+      return;
+    }
+    let visionInfo: textRecognition.VisionInfo = {
+      pixelMap: this.chooseImage
+    };
+    let textConfiguration: textRecognition.TextRecognitionConfiguration = {
+      isDirectionDetectionSupported: false
+    };
+    // Call the OCR API.
+    try {
+      let recognitionResult = await textRecognition.recognizeText(visionInfo, textConfiguration);
+      let recognitionString = recognitionResult.value;
+      this.dataValues = recognitionString;
+      hilog.info(0x0000, 'OCRDemo', `Succeeded in recognizing text：${recognitionString}`);
+    } catch (error) {
+      hilog.error(0x0000, 'OCRDemo', "recognizeText error: " + JSON.stringify(error));
+    }
+
+    if(this.chooseImage && this.imageSource) {
+      this.chooseImage.release();
+      this.imageSource.release();
     }
   }
 
-  aboutToAppear() {
-    grantPermission().then(() => {
-      this.XComponentinit();
-    }).catch((err: BusinessError) => {
-      Logger.error(TAG, `grantPermission faild  ${JSON.stringify(err.code)}`);
+  async aboutToAppear(): Promise<void> {
+    const initResult = await textRecognition.init();
+    hilog.info(0x0000, 'OCRDemo', `OCR service initialization result:${initResult}`);
+  }
+
+  async aboutToDisappear(): Promise<void> {
+    await textRecognition.release();
+    hilog.info(0x0000, 'OCRDemo', 'OCR service released successfully');
+  }
+
+  private async selectImage() {
+    let uri = await this.openPhoto();
+    if (uri === undefined) {
+      hilog.error(0x0000, 'OCRDemo', "Failed to get uri.");
+      return;
+    }
+    this.loadImage(uri);
+  }
+
+  private openPhoto(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      let photoPicker: photoAccessHelper.PhotoViewPicker = new photoAccessHelper.PhotoViewPicker();
+      photoPicker.select({
+        MIMEType: photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE,
+        maxSelectNumber: 1
+      }).then((res: photoAccessHelper.PhotoSelectResult) => {
+        resolve(res.photoUris[0]);
+      }).catch((err: BusinessError) => {
+        hilog.error(0x0000, 'OCRDemo', `Failed to get photo image uri. code：${err.code}，message：${err.message}`);
+        reject('');
+      })
     })
   }
 
-  async aboutToDisappear() {
-    await this.camera.releaseCamera();
-    this.dialogController.close();
-  }
-
-  onPageShow() {
-    this.XComponentinit();
-  }
-
-  onPageHide() {
-    this.camera.releaseCamera();
-    this.dialogController.close()
-  }
-
-  async XComponentinit() {
-    this.xcomponentController.setXComponentSurfaceRect({
-      surfaceWidth: CommonConstants.SURFACE_WIDTH,
-      surfaceHeight: CommonConstants.SURFACE_HEIGHT
-    });
-    this.surfaceId = this.xcomponentController.getXComponentSurfaceId();
-    await this.camera.initCamera(this.surfaceId);
-  }
-
-  refresh() {
-    try {
-      this.camera.captureSession!.start();
-    } catch (error) {
-      let err = error as BusinessError;
-      hilog.error(0x0000, 'Index', 'Failed to refresh. Code: %{public}d, message: %{public}s', err.code, err.message);
-    }
-  }
-
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: CustomDialogExample({
-      text: this.recognitionResult,
-    }),
-    cancel: this.refresh
-  })
-
-  build() {
-    Row() {
-      Column() {
-        Row() {
-          XComponent({
-            id: CommonConstants.XCOMPONENT_ID,
-            type: XComponentType.SURFACE,
-            controller: this.xcomponentController
-          })
-            .onLoad(async () => {
-              await this.camera.releaseCamera();
-              this.XComponentinit()
-            })
-            .width(CommonConstants.FULL_WIDTH)
-            .height(this.xcomponentHeight)
-        }
-        .width(CommonConstants.FULL_WIDTH)
-        .margin({ top: $r('app.float.top_height') })
-        .flexGrow(CommonConstants.TRUE_NUMBER)
-
-        Column() {
-          Text($r('app.string.Recognize_text'))
-            .fontSize($r('app.float.button_tip_size'))
-            .fontColor(Color.White)
-            .margin({ top: $r('app.float.indicate_upper_margin') })
-          Row()
-            .backgroundColor($r('app.color.round_color'))
-            .width($r('app.float.decorative_point_size'))
-            .height($r('app.float.decorative_point_size'))
-            .border({
-              radius: $r('app.float.decorative_dots_rounded_corners')
-            })
-            .margin({
-              top: $r('app.float.decorative_dots_upper_margin'),
-              bottom: $r('app.float.decorative_dots_bottom_margin')
-            })
-          Row() {
-            Row()
-              .backgroundColor(Color.White)
-              .width($r('app.float.button_size'))
-              .height($r('app.float.button_size'))
-              .border({
-                radius: $r('app.float.button_border_radius')
-              })
-          }
-          .onClick(() => {
-            this.camera.takePicture();
-          })
-          .backgroundColor(Color.Black)
-          .width($r('app.float.button_border_size'))
-          .height($r('app.float.button_border_size'))
-          .border({
-            color: Color.White,
-            width: $r('app.float.button_border_width'),
-            radius: $r('app.float.button_border_radius')
-          })
-          .justifyContent(FlexAlign.Center)
-          .alignItems(VerticalAlign.Center)
-        }
-        .width(CommonConstants.FULL_WIDTH)
-        .flexShrink(CommonConstants.FALSE_NUMBER)
-        .height($r('app.float.camera_lower_height'))
-        .backgroundColor(Color.Black)
-        .alignItems(HorizontalAlign.Center)
+  private loadImage(name: string) {
+    setTimeout(async () => {
+      try {
+        let fileSource = await fileIo.open(name, fileIo.OpenMode.READ_ONLY);
+        this.imageSource = image.createImageSource(fileSource.fd);
+        this.chooseImage = await this.imageSource.createPixelMap();
+      } catch (error) {
+        hilog.error(0x0000, 'OCRDemo', "fileIo.open error: " + JSON.stringify(error));
       }
-      .width(CommonConstants.FULL_WIDTH)
-      .height(CommonConstants.FULL_Height)
-      .backgroundColor(Color.Black)
-    }
-    .height(CommonConstants.FULL_Height)
+    }, 100)
   }
 }
