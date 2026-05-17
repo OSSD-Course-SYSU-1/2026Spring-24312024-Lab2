@@ -10,7 +10,15 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "ocrDemo"
+      "value": "label"
+    },
+    {
+      "name": "PreviewFile",
+      "value": "Preview File"
+    },
+    {
+      "name": "PreviewFolder",
+      "value": "Preview Folder"
     }
   ]
 }
