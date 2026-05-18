@@ -2,49 +2,49 @@
   "version": 1,
   "ohos-module-entry": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build",
+    "MODULE_BUILD_DIR": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build",
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\src\\main",
+        "SOURCE_ROOT": "C:\\project\\2026Spring-24312024-Lab2\\entry\\src\\main",
         "RESOURCES_PATH": [
-          "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\src\\main\\resources"
+          "C:\\project\\2026Spring-24312024-Lab2\\entry\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
-          "WORKER_LOADER": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
-          "SOURCE_MAP_DIR": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\source_map\\default"
+          "OUTPUT_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+          "SOURCE_MAP_DIR": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\source_map\\default"
         },
         "BUILD_OPTION": {
           "debuggable": true
         }
       },
       "ohosTest": {
-        "SOURCE_ROOT": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\src\\ohosTest",
+        "SOURCE_ROOT": "C:\\project\\2026Spring-24312024-Lab2\\entry\\src\\ohosTest",
         "RESOURCES_PATH": [
-          "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\src\\ohosTest\\resources"
+          "C:\\project\\2026Spring-24312024-Lab2\\entry\\src\\ohosTest\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\outputs\\ohosTest",
-          "INTERMEDIA_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
-          "JS_LITE_ASSETS_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
-          "RES_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\res\\ohosTest",
-          "RES_PROFILE_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
-          "WORKER_LOADER": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
-          "MANIFEST_JSON": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\manifest\\ohosTest",
-          "OUTPUT_METADATA_JSON": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json",
-          "SOURCE_MAP_DIR": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry\\build\\default\\intermediates\\source_map\\ohosTest"
+          "OUTPUT_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json",
+          "SOURCE_MAP_DIR": "C:\\project\\2026Spring-24312024-Lab2\\entry\\build\\default\\intermediates\\source_map\\ohosTest"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -98,17 +98,17 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\build",
+    "MODULE_BUILD_DIR": "C:\\project\\2026Spring-24312024-Lab2\\build",
     "BUNDLE_NAME": "com.huawei.hmos.previewdemo",
     "VERSION_CODE": 1000000,
     "VERSION_NAME": "1.0.0",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\build\\outputs\\default"
+      "OUTPUT_PATH": "C:\\project\\2026Spring-24312024-Lab2\\build\\outputs\\default"
     },
     "MODULES": [
       {
         "name": "entry",
-        "srcPath": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master\\entry",
+        "srcPath": "C:\\project\\2026Spring-24312024-Lab2\\entry",
         "targets": [
           {
             "name": "default",
@@ -117,7 +117,7 @@
             ]
           }
         ],
-        "belongProjectPath": "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master"
+        "belongProjectPath": "C:\\project\\2026Spring-24312024-Lab2"
       }
     ],
     "PROFILE_OPT": {
@@ -161,7 +161,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "C:\\task\\preview-kit-samplecode-clientdemo-arkts-master"
+      "C:\\project\\2026Spring-24312024-Lab2"
     ],
     "BUILD_CACHE_DIR": ""
   }
