@@ -1,171 +1,168 @@
-# HarmonyOS 文件管理器与预览应用
+# HarmonyOS 文件管理器（多端适配 + 自由流转）
 
 ## 项目简介
 
-这是一个基于 HarmonyOS 的完整文件管理器与预览应用（Preview Demo），支持文件列表浏览、文件信息详情预览、多选操作和批量预览功能。应用包名为 `com.huawei.hmos.previewdemo`，支持手机、平板和 2in1 设备。应用入口为 `EntryAbility`，主页面为 `pages/Index`，实现了完整的文件管理系统，包括目录导航、文件预览、元数据展示、权限检测等功能。
+本项目是一个基于 HarmonyOS NEXT 开发的多设备文件管理器演示应用，采用 **"一次开发，多端部署"（一多）** 架构规范设计。项目实现了完整的文件列表浏览模块（目录导航、文件预览、多选批量操作、跨设备投屏），并深度集成了 **自由流转（跨端迁移/应用接续）** 功能。工程架构遵循标准三层结构（common 公共能力层、features 基础特性层、products 产品定制层），通过自适应布局（Row/Column/Flex 容器）与响应式布局（基于窗口宽度的五档断点 XS/SM/MD/LG/XL 及栅格系统 GridRow/GridCol）实现一套代码在小（手机）、中（折叠屏）、大（平板/PC）设备上的完美适配。应用还集成了 SysCap 系统能力检查机制，确保在功能受限设备上提供降级体验。
 
-该应用展示了 HarmonyOS 应用开发中文件操作、UI组件、对话框管理和权限处理等核心技术。通过模块化设计，将文件列表浏览、文件信息详情预览和批量操作等功能分离为可复用的组件，可作为学习和参考 HarmonyOS 文件管理相关开发的范例。
-
-## 效果预览
-
-（建议在此处放置应用运行截图，可参考 `screenshots/device/` 目录下的图片）
-
-- `demo.png`：应用主界面预览
-- `demoIndex.png`：首页效果
-- `demo_folder.png`：文件夹视图演示
-
-**新增功能截图建议**：
-1. 文件列表浏览界面截图
-2. 文件信息详情对话框截图
-3. 长按上下文菜单截图
-4. 多选模式界面截图
-5. 批量预览流程截图
+> **效果预览：**  
+> *（请在此处放置应用在不同设备形态下的运行截图，建议包含手机竖屏、平板横屏、PC 大屏三种预览图）*
 
 ## 工程目录树
 
 ```
-2026Spring-24312024-Lab2/
-├── AppScope/                    # 应用全局资源与配置
-│   ├── app.json5               # 应用配置文件（包名、版本、图标等）
-│   └── resources/              # 全局资源文件（字符串、颜色、图片等）
-├── entry/                       # 主模块
-│   └── src/
-│       ├── main/
-│       │   ├── ets/
-│       │   │   ├── components/          # 自定义组件目录
-│       │   │   │   ├── FileList.ets     # 文件列表基础功能组件
-│       │   │   │   ├── FileListView.ets # 文件列表视图组件（主界面）
-│       │   │   │   └── FileInfoDialog.ets # 文件信息详情对话框组件（新增）
-│       │   │   ├── entryability/
-│       │   │   │   └── EntryAbility.ets # 应用入口 Ability
-│       │   │   └── pages/
-│       │   │       └── Index.ets        # 主页面，集成文件列表视图
-│       │   ├── module.json5             # 模块配置（设备类型、Ability、页面路由）
-│       │   └── resources/               # 模块资源
-│       └── ohosTest/                    # 测试代码
-├── hvigor/                      # 构建脚本目录
-├── oh_modules/                  # 依赖模块
-├── screenshots/                 # 应用截图
-│   └── device/
-│       ├── demo.png
-│       ├── demoIndex.png
-│       ├── demoIndex_en.png
-│       ├── demo_en.png
-│       ├── demo_folder.png
-│       └── demo_folder_en.png
-├── .hvigor/                     # 构建缓存
-├── .idea/                       # IDE 配置文件
-├── .clang-format                # 代码格式化配置
-├── build-profile.json5          # 构建配置（产品、编译模式等）
-├── hvigorfile.ts                # 构建脚本
-├── oh-package.json5             # 依赖配置文件
-├── oh-package-lock.json5        # 依赖锁文件
-├── readme_cn.md                 # 中文说明文档
-├── readme_en.md                 # 英文说明文档
-├── 工程文件描述md文件1.md      # 原始工程描述文档
-├── 新增功能文件描述2.md        # 新增功能详细描述文档（新增）
-└── 初始功能展示.mp4             # 功能演示视频
+entry/src/main/ets/
+├── common/                                    # 公共能力层（仅可被上层依赖）
+│   ├── components/                            #   公共 UI 组件（可扩展）
+│   └── utils/
+│       ├── BreakpointSystem.ets               #   断点系统工具类（单例，定义 XS/SM/MD/LG/XL 五档断点，监听窗口宽度变化）
+│       ├── GridLayout.ets                     #   栅格布局组件（封装 GridRow/GridCol，支持跨断点的 span/offset 配置）
+│       ├── ResponsiveSwiper.ets               #   响应式轮播组件（根据断点调整 displayCount：小屏1张/中屏2张/大屏3-4张）
+│       ├── ResponsiveTabs.ets                 #   响应式标签页组件（小屏水平/大屏垂直，自动切换方向）
+│       ├── ScreenOrientation.ets              #   屏幕方向适配系统（多路径检测横竖屏，含滚动位置管理器）
+│       └── SysCapChecker.ets                  #   系统能力检查器（SysCap 枚举、能力检测、降级策略映射、条件渲染组件）
+│
+├── entryability/
+│   └── EntryAbility.ets                       # 应用入口 UIAbility（已集成自由流转 onContinue/onCreate/onNewWant/onWindowStageRestore 生命周期）
+│
+├── features/                                  # 基础特性层（功能独立的业务模块，可依赖 common）
+│   ├── cast/
+│   │   ├── CastService.ets                    #   投屏服务类（单例：设备发现、文件传输、状态管理、MIME 类型映射）
+│   │   └── DevicePicker.ets                   #   设备选择器组件（模态对话框，展示可用设备列表，含加载/空/错误状态）
+│   ├── continuation/
+│   │   ├── ContinuationService.ets            #   自由流转核心服务（分布式数据对象生命周期管理、三步流转机制实现）
+│   │   ├── ContinuationStateModel.ets         #   流转状态数据模型（迁移状态枚举、数据收集/恢复工具类）
+│   │   └── ContinuationAssetHelper.ets        #   文件资产迁移辅助类（文件复制到分布式目录、Asset 对象构建/恢复）
+│   └── filemanager/
+│       ├── FileList.ets                       #   文件列表工具函数（目录列表、文件信息、MIME 类型、预览检查、路径处理）
+│       ├── FileInfoDialog.ets                 #   文件详情预览对话框（元数据展示 + 立即预览按钮）
+│       └── FileListView.ets                   #   文件列表视图组件（目录导航、多选模式、长按菜单、投屏集成、加载/空/错误状态）
+│
+├── pages/
+│   └── Index.ets                              # 一多架构响应式主入口页面（适配小/中/大屏，集成流转模拟 UI 面板）
+│
+└── products/                                  # 产品定制层（针对特定设备形态的个性化配置和入口）
+    ├── 2in1/
+    │   └── pages/                             #   2in1 设备入口（可扩展）
+    ├── phone/
+    │   └── pages/
+    │       └── Index.ets                      #   Phone 产品定制入口（底部标签导航、紧凑 UI、流转模拟面板）
+    └── tablet/
+        └── pages/                             #   平板设备入口（可扩展）
 ```
 
-## 使用说明
+## 环境要求与编译运行步骤
 
 ### 环境要求
 
-- **操作系统**：Windows 10/11 或 macOS
-- **开发工具**：DevEco Studio 5.0.0 或更高版本
-- **SDK 版本**：HarmonyOS SDK 5.0.0 (API 12)
-- **Node.js**：18.19.0 或更高版本（用于 Hvigor 构建）
+| 项目 | 要求 |
+|------|------|
+| 操作系统 | Windows 10/11 |
+| IDE | DevEco Studio 5.0+ |
+| SDK | HarmonyOS NEXT SDK 5.0.0 (API 12) |
+| 设备 | 支持 phone / tablet / 2in1 模拟器或真机 |
+| 双端流转 | 需两台设备登录同一华为账号，并开启 Wi-Fi 和蓝牙 |
 
 ### 编译运行步骤
 
-1. **克隆项目**：将本仓库克隆到本地。
-2. **打开项目**：使用 DevEco Studio 打开工程目录。
-3. **同步依赖**：等待 DevEco Studio 自动同步依赖（或手动执行 `ohpm install`）。
-4. **选择设备**：在 DevEco Studio 中选择 Phone 或 Tablet 模拟器。
-5. **运行应用**：点击运行按钮（▶️）或按 `Shift+F10` 编译并安装到模拟器/真机。
-6. **授予权限**：首次运行需要授予文件访问权限。
+1. **克隆项目**  
+   将项目导入 DevEco Studio：
+   ```bash
+   git clone <项目仓库地址>
+   ```
 
-### 核心功能点
+2. **打开项目**  
+   使用 DevEco Studio 打开项目根目录，IDE 将自动识别 `build-profile.json5` 和 `oh-package.json5` 配置。
 
-#### 基础功能
-- **应用入口 Ability**：继承 `UIAbility`，实现生命周期回调（onCreate、onWindowStageCreate、onForeground 等）
-- **主页面加载**：在 `onWindowStageCreate` 中加载 `pages/Index` 页面
-- **多设备适配**：支持 phone、tablet、2in1 设备类型
-- **权限管理**：申请文件读写权限（Download目录、Documents目录、持久化文件访问）
+3. **安装依赖**  
+   如果 `oh-package.json5` 中有依赖需要安装，在终端执行：
+   ```bash
+   ohpm install
+   ```
 
-#### 文件列表浏览模块
-- **目录导航**：支持浏览设备公共目录（如Download），单击文件夹进入子目录，提供返回上级目录功能
-- **文件列表**：显示文件和文件夹，支持图标、名称、大小、修改时间等信息展示
-- **排序功能**：文件夹在前，文件在后，按名称排序
-- **空状态提示**：空文件夹时显示友好提示
-- **错误处理**：加载失败时显示错误状态和重试按钮
+4. **配置签名**  
+   在 `build-profile.json5` 的 `signingConfigs` 中配置您的签名证书，或使用自动签名。
 
-#### 文件信息详情预览功能（新增）
-- **模态对话框**：单击文件时弹出文件信息详情对话框
-- **完整元数据**：显示文件名、完整路径、文件大小（自动转换B/KB/MB/GB）、MIME类型、修改时间（yyyy-MM-dd HH:mm:ss）、可读/可写状态、可预览状态
-- **智能按钮**："立即预览"按钮根据可预览状态动态启用/禁用
-- **多种触发方式**：单击文件、长按菜单选择"详情"、多选模式下的"详情"按钮
-- **外部关闭支持**：支持点击外部区域或返回键关闭对话框
+5. **选择目标设备**  
+   在 IDE 的设备选择器中选择：
+   - `Phone`（手机模拟器/真机）
+   - `Tablet`（折叠屏/平板模拟器）
+   - `2in1`（PC 模拟器）
 
-#### 多选与批量操作
-- **多选模式**：长按文件进入多选模式，可勾选多个文件
-- **批量预览**：按顺序逐个打开选中的可预览文件
-- **批量详情**：查看选中文件的详细信息（显示第一个文件详情）
-- **操作栏**：多选模式下显示操作栏，提供取消、详情、批量预览功能
+6. **构建与运行**  
+   点击 `Run` 按钮（或按 `Shift+F10`），IDE 会自动编译并安装应用到目标设备。
 
-#### 文件预览功能
-- **预览检测**：通过 `filePreview.canPreview()` 检测文件是否可预览
-- **系统预览**：使用 `filePreview.openPreview()` 调用系统预览功能
-- **错误处理**：预览失败时显示友好提示
+7. **体验自由流转（真机）**  
+   - 在两台设备上安装应用并登录同一华为账号
+   - 在源端设备打开应用
+   - 在对端设备 Dock 栏点击应用图标，系统自动触发流转
+   - 应用状态（选中的标签页、当前路径等）将无缝迁移到对端设备
+
+8. **虚拟机模拟流转**  
+   - 在设置的"自由流转"面板中，点击"模拟保存（源端）"按钮
+   - 再点击"模拟恢复（对端）"按钮，可模拟流转的保存与恢复过程
+
+## 核心功能点
+
+### 1. 文件管理
+- ✅ **目录导航**：支持进入子目录、返回上级目录、路径堆栈管理
+- ✅ **文件列表**：按文件夹/文件排序展示，显示名称、大小、修改时间
+- ✅ **文件详情预览**：单击文件弹出模态对话框，展示文件名、路径、大小、MIME 类型、修改时间、可读/可写状态
+- ✅ **文件预览**：集成 `filePreview` API，支持图片、文档、音视频等文件的即时预览
+- ✅ **多选模式**：长按文件进入多选，支持批量选中、批量预览（逐个打开）、批量查看详情
+- ✅ **加载/空/错误状态**：完整的 UI 状态处理，LoadingProgress 加载动画、空文件夹提示、错误重试
+
+### 2. 跨设备投屏
+- ✅ **设备发现**：通过 CastService 发现同一网络下的可用设备
+- ✅ **文件类型检测**：支持图片（jpg/png/gif/bmp）、视频（mp4/avi/mov）、音频（mp3/wav）、文档（pdf/doc/xls/ppt/txt）投屏
+- ✅ **传输进度**：实时传输进度回调（0-100%）
+- ✅ **设备选择器**：模态对话框展示设备列表，含在线/离线状态、设备图标、刷新与重试
+- ✅ **投屏状态管理**：IDLE → DISCOVERING → CONNECTING → TRANSFERRING → SUCCESS/ERROR
+- ✅ **取消与重试**：支持取消传输和失败重试
+
+### 3. 一多（多端适配）
+- ✅ **五档断点系统**：XS (<320vp)、SM (320-599vp)、MD (600-839vp)、LG (840-1079vp)、XL (≥1080vp)
+- ✅ **栅格系统**：小屏 4 列、中屏 8 列、大屏 12 列，配合 span/offset 实现布局重构
+- ✅ **响应式标签页**：小屏水平/底部标签、大屏垂直/左侧标签
+- ✅ **响应式轮播**：手机 1 张、折叠屏 2 张、平板/PC 3-4 张
+- ✅ **自适应布局**：Row、Column、Flex、List、Scroll 容器的拉伸、占比、延伸、隐藏
+- ✅ **横竖屏适配**：竖屏单栏流式、横屏左右分栏（预览区+文件列表）
+- ✅ **产品定制层**：Phone 入口（底部标签导航），Tablet/2in1 入口可扩展
+
+### 4. 自由流转（跨端迁移）
+- ✅ **onContinue 生命周期**：源端状态数据保存（wantParam 轻量传递）
+- ✅ **onCreate/onNewWant 恢复**：对端冷启动/热启动状态恢复
+- ✅ **onWindowStageRestore**：迁移场景下的窗口恢复
+- ✅ **分布式数据对象**：`distributedDataObject` 的创建、组网、激活、持久化
+- ✅ **AppStorage 状态同步**：迁移状态通过 AppStorage 在 Ability 与 UI 间传递
+- ✅ **文件资产迁移**：文件复制到 `distributedFilesDir`，构建 Asset 对象跨端迁移
+- ✅ **模拟面板**：设置页中提供"模拟保存/模拟恢复"按钮，便于虚拟机调试
+
+### 5. SysCap 系统能力检查
+- ✅ **能力枚举**：文件管理、分布式数据、分布式硬件、NFC、蓝牙、位置、相机、音频等
+- ✅ **运行时检查**：通过 `canIUse()` 判断设备能力，支持缓存
+- ✅ **降级策略**：为每个不支持的能力提供备选方案（如"使用本地存储替代分布式数据同步"）
+- ✅ **条件渲染组件**：`CapabilityConditional` 组件根据能力检查结果渲染不同 UI
+- ✅ **权限管理**：权限检查与请求辅助方法
 
 ## 技术栈
 
-### 开发语言与框架
-- **开发语言**：ArkTS（基于 TypeScript 的 HarmonyOS 应用开发语言）
-- **UI 框架**：ArkUI
-- **应用模型**：Stage 模型
-- **Ability 类型**：UIAbility
+| 技术 | 版本/说明 |
+|------|----------|
+| 开发语言 | ArkTS（HarmonyOS 声明式 UI 开发语言） |
+| HarmonyOS API | 12（SDK 5.0.0） |
+| 编译工具 | Hvigor（HarmonyOS 构建系统） |
+| 核心框架 | ArkUI（声明式 UI 框架） |
+| 分布式能力 | Kit.DistributedService（`@kit.ArkData`） |
+| 文件服务 | Kit.CoreFileKit（`fileIo`, `fileUri`） |
+| 预览服务 | Kit.PreviewKit（`filePreview`） |
+| UI 组件 | `@kit.ArkUI`（Button, Text, List, Swiper, GridRow/GridCol, Dialog 等） |
+| 性能分析 | Kit.PerformanceAnalysisKit（`hilog`） |
+| 应用权限 | `DISTRIBUTED_DATASYNC`, `ACCESS_SERVICE_DM`, `FILE_ACCESS_PERSIST` 等 |
+| 工程架构 | 标准三层架构（common → features → products） |
+| 应用接续 | `continuable: true`（module.json5 配置） |
 
-### HarmonyOS API 版本
-- **API 版本**：HarmonyOS SDK 5.0.0 (API 12)
-- **编译模式**：Stage 模式
+## 许可证说明
 
-### 使用的 HarmonyOS Kit
+本项目未包含 LICENSE 文件，代码仅供学习参考。部分代码头部包含 `Copyright (c) Huawei Technologies Co., Ltd. 2023-2023. All rights reserved.` 版权声明，表明参考或使用了华为提供的示例代码实现。
 
-#### 文件操作相关
-- **`@kit.CoreFileKit`**：
-  - `fileIo`：文件读写操作（`statSync`, `accessSync`, `listFileSync`）
-  - `fileUri`：URI转换（`getUriFromPath`）
-  - `picker`：文件选择器（目录选择）
-
-#### 预览功能相关
-- **`@kit.PreviewKit`**：
-  - `filePreview`：文件预览功能（`canPreview`, `openPreview`）
-
-#### UI 组件相关
-- **`@kit.ArkUI`**：
-  - `promptAction`：显示对话框、Toast和上下文菜单
-  - `UIContext`：UI上下文管理
-  - `ComponentContent`：组件内容封装
-  - 基础UI组件：`Column`, `Row`, `Text`, `Button`, `List`, `ListItem`等
-
-#### 基础服务
-- **`@kit.BasicServicesKit`**：
-  - `BusinessError`：错误处理
-
-### 构建与依赖管理
-- **依赖管理**：ohpm（OpenHarmony Package Manager）
-- **构建工具**：Hvigor
-- **测试框架**：Hypium（`@ohos/hypium` 1.0.15）
-
-## 许可信息
-
-本项目暂未包含明确的 LICENSE 文件，请根据实际使用场景参考相关开源协议。建议在项目根目录添加合适的开源许可证（如 Apache 2.0、MIT 等）。
-
----
-
-*本 README 基于项目代码自动生成，内容仅供参考，具体实现以实际代码为准。*
-
-**更新记录**：
-- 2026-05-18：新增文件信息详情预览功能，完善文件列表浏览模块
-- 2025-12-12：初始版本，基础预览演示功能
+如需用于商业用途，请联系项目维护者获取授权。

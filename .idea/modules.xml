@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2026Spring-24312024-Lab2.iml" filepath="$PROJECT_DIR$/.idea/modules/2026Spring-24312024-Lab2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/entry.iml" filepath="$PROJECT_DIR$/.idea/modules/entry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/preview-kit-samplecode-clientdemo-arkts-master.iml" filepath="$PROJECT_DIR$/.idea/modules/preview-kit-samplecode-clientdemo-arkts-master.iml" />
     </modules>
   </component>
 </project>

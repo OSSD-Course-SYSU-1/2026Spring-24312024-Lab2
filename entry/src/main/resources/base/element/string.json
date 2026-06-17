@@ -31,6 +31,10 @@
     {
       "name": "reason_file_access",
       "value": "需要持久化文件访问权限"
+    },
+    {
+      "name": "reason_distributed",
+      "value": "需要分布式能力以实现跨设备投屏和数据同步功能"
     }
   ]
 }

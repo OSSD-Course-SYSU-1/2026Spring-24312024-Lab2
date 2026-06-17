@@ -19,6 +19,22 @@
     {
       "name": "PreviewFolder",
       "value": "预览文件夹"
+    },
+    {
+      "name": "reason_download",
+      "value": "需要访问Download目录以浏览文件"
+    },
+    {
+      "name": "reason_documents",
+      "value": "需要访问Documents目录以浏览文件"
+    },
+    {
+      "name": "reason_file_access",
+      "value": "需要持久化文件访问权限"
+    },
+    {
+      "name": "reason_distributed",
+      "value": "需要分布式能力以实现跨设备投屏和数据同步功能"
     }
   ]
 }
